@@ -32,7 +32,11 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
+    kapt("io.micronaut:micronaut-inject-java")
+    kaptTest("io.micronaut:micronaut-inject-java")
     implementation("io.micronaut:micronaut-validation")
+    kapt("io.micronaut.openapi:micronaut-openapi:3.1.0")
+    implementation("io.swagger.core.v3:swagger-annotations")
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
@@ -58,5 +62,10 @@ tasks {
         }
     }
 
+}
 
+kapt {
+    arguments {
+        arg("micronaut.openapi.views.spec","rapidoc.enabled=true,swagger-ui.enabled=true,swagger-ui.theme=flattop")
+    }
 }
